@@ -38,6 +38,31 @@ Name:<input type="text", name="name">
  }
  echo"</table>";
  ?>
+//update
+<?php
+
+
+$con=mysqli_connect("localhost","root","root","bookdb");
+$id=$_GET['x'];
+$query=mysqli_query($con,"select * from book where id=$id");
+$row=mysqli_fetch_array($query);
+if(isset($_POST['btnup']))
+{
+    
+    $name=$_POST['name'];
+    $query=mysqli_query($con,"UPDATE `book` SET `name` = '$name' WHERE `book`.`id` = $id;");
+    if($query){
+        echo "<script>alert('update recorde');</script>";
+    }
+}
+
+?>
+<form method = post>
+Name:<input type="text", name="name">
+ <button type="submit" name="btnup">update</button>
+ 
+ 
+ </form>
  <!-- delete.php -->
  <?php
 $ID=$_GET['x'];
